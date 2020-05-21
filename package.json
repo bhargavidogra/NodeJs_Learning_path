@@ -1,0 +1,27 @@
+{
+  "name": "basicnodejs",
+  "version": "1.0.0",
+  "description": "Learning Basics of NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "start" :"nodemon ./app.js"
+   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhargavidogra/NodeJs_Learning_path.git"
+  },
+  "keywords": [
+    "Node"
+  ],
+  "author": "Bhargavi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhargavidogra/NodeJs_Learning_path/issues"
+  },
+  "homepage": "https://github.com/bhargavidogra/NodeJs_Learning_path#readme",
+  "dependencies": {
+    "node": "^14.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
