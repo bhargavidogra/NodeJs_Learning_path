@@ -175,8 +175,45 @@ NPX
 
 
 Alternatives to NPM 
-   yarn one of the alternative to npm introduced by facebook
-   ni - less verbal approach used here 
+
+     yarn one of the alternative to npm introduced by facebook
+     ni - less verbal approach used here 
+
+
+
+Express and Middlewares
+
+
+   Syntax 
+     app.use(callback); //calbacks get req and res object
+
+     app.use(path.callback);
+
+     app.[get|post|put|delete|...](path,callback);
+
+     What do Express middleware do?
+       Execute any code
+       change the req and res object
+       end the req / res cycle- to send data back to caller
+       call the next middleware in the stack
+      
+         
+          app.use((req,res,next)=>{
+           return next();
+          });
+ 
+
+ Routing via middleware :
+    app.get('/feedback', (req,res,next)=>{
+      return res.send('hello');
+    });
+
+    Parameter Routes : Dynamic Routes:
+    app.get('/speakers/:speakername',handler);
+    app.get('/speakers/:speakername?',handler);//here ?makes speaker name optional
+
+
+
 
               
 
