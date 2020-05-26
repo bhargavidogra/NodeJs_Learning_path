@@ -213,10 +213,112 @@ Express and Middlewares
     app.get('/speakers/:speakername?',handler);//here ?makes speaker name optional
 
 
+  Node Js Data Persistance
 
+  Cookie Session
+  We store data and encrypt it such that we do not want user to know the data stored.example index.js
+   Note inthe browser the session handeling middleware will store the keys and data sent in the cookie.
+
+
+   Async Programming
+   
+     Asynchronous programming is a design pattern which ensures the non-blocking code execution.
+
+     Non blocking code do not prevent the execution of piece of code. In general if we execute in Synchronous manner i.e one after another we unnecessarily stop the execution of those code which is not depended on the one you are executing.
+     Asynchronous does exactly opposite, asynchronous code executes without having any dependency and no order. This improves the system efficiency and throughput.
+     Asynchronous programming is great for faster execution of programs but it comes with price.Its difficult to program and most of the time we end up having callback hell scenario.    
+        
+        var fs = require("fs");
+       fs.readFile('sync.js','utf8',function(err,data){
+       if(!err) {
+       console.log(data);
+       }
+        });
+       console.log("something else");
+
+     Here we have got console.log() content first and then file content. This is because code is Asynchronous and event loop executes that later
+      
+      Event Loop 
+      It is responsible for scheduling asynchronous operations.
+
+      Event-driven programming is a programming paradigm in which the flow of the program is determined by events such as user actions (mouse clicks, key presses), sensor outputs, or messages from other programs/threads.
+
+
+      What is callback hell
+     This happens due to the Asynchronous nature of the JavaScript. We want to execute tasks which are dependent on each other hence we wrap them into the callbacks of each function and hence caught into callback hell situation
+     
+      
+      To avoid callback hell, follow one or combination of the following :
+
+      Modularise your code.
+      Use generators.
+      Use promises
+      Use event-driven programming.
+      Use Async/await
+
+Nested callbacks  Example :
+
+      app.post('/message',(req,res)=>{
+          var message = new Message(req.body)
+            message.save((err)=>{
+                if(err)
+                 sendStatus(500);
+
+                 Message.findOne({message : 'badword',(err,censored)=>{
+                           if(censored){
+                          console.log(`Censored word found ${censored}`);
+                       message.remove({_id:censored.id}, (err)=>{
+                      console.log('removed censored message);
+                       });
+                      }
+                   }});
+                });
+            });
+
+   SOLUTION:
+
+   Promises
+
+    app.post('/message',(req,res)=>{
+          var message = new Message(req.body)
+            message.save().then(()=>{
+                 console.log('saved');
+                  return Message.findOne({message : 'badword'});
+                }).then(censored =>{
+                           if(censored){
+                          console.log(`Censored word found ${censored}`);
+                       message.remove({_id:censored.id}, (err)=>{
+                      console.log('removed censored message);
+                       });
+                      }
+                      io.emit('message),req.body)
+                      res.sendStatus(200);
+                })
+                .catch((err)=>{
+                  res.sendStatus(500);
+                  console.log(err);
+                });
+            );
 
               
+   Async await
 
+      app.post('/message', async(req,res)=>{
+          var message = new Message(req.body)
+            var savedMessage = await message.save();
+            
+                 console.log('saved');
+                  var censored = await Message.findOne({message : 'badword'});
+              
+                  if(censored){
+                   console.log(`Censored word found ${censored}`);
+                     await  message.remove({_id:censored.id});
+                      }
+                  else{
+                      io.emit('message),req.body)
+                      res.sendStatus(200);
+                  }
+               });
 
 
 
