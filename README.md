@@ -322,3 +322,50 @@ Nested callbacks  Example :
 
 
 
+NodeJs Securing RESTful Apis
+
+       Top 5 Security Threats
+       1 Injection Attacks
+       2 Broken authentication
+       3 Sensitive data exposure 
+       4 XML entities
+       5 Broken Access Control
+  Link to current threats:
+ 
+   OWASP : www.owasp.org
+      Open Web Application Security Project
+        Explains the type of attacks that occur in day to day basis and how to tackel them
+
+
+   JWT (Jason Web Token) (link : jwt.io)
+   It is an open standard to transmit data and information between two parties.It mainly consist of three things namely : a header, payload and the signature
+
+   Parts of JWT Token are shown as:
+        1) Header has two parts 
+            The type of token ('typ')
+            The algorithm used for hashing and encrypting the token('alg')
+        2) Payload
+            It consist of meta data from the request party that is required from the server.Typical information seen is the issuer of the request , information ,name etc
+        3) Signature
+            It proves the requester is - 'who he says he is' and it is this using which request is properly validated.AuthO services uses this JWT.
+
+        USE OF JWT
+        This is the best way to securly transmit information across parties on the web, so that payload could be used for any type of information you would like to transmit to the parties.It can quite evidently used to authenticate the user.
+
+        Hence when a user is registered to a site this token will be used to validate the user as he makes several requests for several data.
+
+   POSTMAN 
+
+ Used for checking the data by fetching it using get or post for sending to DB or delete data from DB or put to alter data in DB  etc requests.
+One of the best feature is that it provides the generate code section to get the data to front end directly by simply copying that fetch code in various languages.
+
+ 
+     LOOPBACK
+     Securing API with loopback framework which  helps to secure projects. Simply type  cmd - lb  it asks for entering project name and loopback version you want to use.
+
+
+ Securing API Manually
+
+   Install jasonwebtoken and bcrypt to the project.
+   Create model  file   and create schema . Use bycrypt to generate password.
+   Create controller and its calling functions in the index.js  jwt token is passed in the header which is used to authenticate the data and user sent in the requested body.
